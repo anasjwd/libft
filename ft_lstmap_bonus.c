@@ -6,7 +6,7 @@
 /*   By: ajawad <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:13:58 by ajawad            #+#    #+#             */
-/*   Updated: 2023/11/07 15:16:53 by ajawad           ###   ########.fr       */
+/*   Updated: 2023/11/12 13:51:53 by ajawad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		tmp = ft_lstnew(f(lst->content));
 		if (tmp == NULL)
 		{
-			ft_lstclear(&new_lst, (*del));
+			ft_lstclear(&new_lst, del);
 			return (NULL);
 		}
 		ft_lstadd_back(&new_lst, tmp);
