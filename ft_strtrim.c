@@ -6,7 +6,7 @@
 /*   By: ajawad <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 19:49:51 by ajawad            #+#    #+#             */
-/*   Updated: 2023/11/07 21:11:23 by ajawad           ###   ########.fr       */
+/*   Updated: 2023/11/12 13:58:18 by ajawad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	start = i;
 	if (s1[start] == '\0')
 	{
-		str = malloc(1);
-		str[0] = '\0';
+		str = ft_strdup("");
 		return (str);
 	}
 	while (s1[i])

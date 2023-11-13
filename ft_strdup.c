@@ -6,14 +6,14 @@
 /*   By: ajawad <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:11:02 by ajawad            #+#    #+#             */
-/*   Updated: 2023/11/02 10:12:00 by ajawad           ###   ########.fr       */
+/*   Updated: 2023/11/12 13:57:39 by ajawad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-char	*ft_strdup(char *src)
+char	*ft_strdup(const char *src)
 {
 	char	*ptr;
 	int		length;

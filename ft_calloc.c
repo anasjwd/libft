@@ -6,7 +6,7 @@
 /*   By: ajawad <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 09:53:16 by ajawad            #+#    #+#             */
-/*   Updated: 2023/11/07 15:05:05 by ajawad           ###   ########.fr       */
+/*   Updated: 2023/11/12 13:42:06 by ajawad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	unsigned char	*ptr;
 
-	if (count == 0 || size == 0)
-	{
-		count = 1;
-		size = 1;
-	}
 	ptr = malloc(count * size);
 	if (!ptr)
 		return (NULL);

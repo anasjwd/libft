@@ -6,16 +6,21 @@
 /*   By: ajawad <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 20:49:18 by ajawad            #+#    #+#             */
-/*   Updated: 2023/11/03 02:17:56 by ajawad           ###   ########.fr       */
+/*   Updated: 2023/11/11 20:14:46 by ajawad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-static int	ft_isc(char s, char c)
+static void	ft_free(char **array)
 {
-	return (c == s);
+	int	idx;
+
+	idx = 0;
+	while (array[idx])
+		free(array[idx++]);
+	free(array);
 }
 
 static int	wordcounter(const char *str, char c)
@@ -29,7 +34,7 @@ static int	wordcounter(const char *str, char c)
 		return (0);
 	while (str[i])
 	{
-		if (ft_isc(str[i], c) == 0 && (ft_isc(str[i + 1], c) == 1 || str[i
+		if (str[i] != c && (str[i + 1] == c || str[i
 					+ 1] == '\0'))
 			counter++;
 		i++;
@@ -51,7 +56,7 @@ static char	*ft_strncpy(char *dest, const char *src, int n)
 	return (dest);
 }
 
-static void	fill(const char *str, char **array, char c)
+static int	fill(const char *str, char **array, char c)
 {
 	int	i;
 	int	tmp;
@@ -60,33 +65,44 @@ static void	fill(const char *str, char **array, char c)
 	i = 0;
 	index = 0;
 	if (str == NULL)
-		return ;
+		return (0);
 	while (str[i])
 	{
-		if (ft_isc(str[i], c) == 1)
+		if (str[i] == c)
 		{
 			i++;
 			continue ;
 		}
 		tmp = i;
-		while (ft_isc(str[i], c) == 0 && str[i])
+		while (str[i] != c && str[i])
 			i++;
 		array[index] = malloc(sizeof(char) * (i - tmp + 1));
+		if (!array[index])
+			return (0);
 		ft_strncpy(array[index], &str[tmp], i - tmp);
 		index++;
 	}
+	return (1);
 }
 
 char	**ft_split(const char *str, char c)
 {
 	char	**array;
 	int		nbr_words;
+	int		checker;
 
+	if (!str)
+		return (NULL);
 	nbr_words = wordcounter(str, c);
 	array = malloc(sizeof(char *) * (nbr_words + 1));
 	if (array == NULL)
 		return (NULL);
 	array[nbr_words] = 0;
-	fill(str, array, c);
+	checker = fill(str, array, c);
+	if (checker == 0)
+	{
+		ft_free(array);
+		return (NULL);
+	}
 	return (array);
 }
